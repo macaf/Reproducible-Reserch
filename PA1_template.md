@@ -56,15 +56,10 @@ Histograms of steps per day:
 
 
 ```r
-png("Image1.png")
 hist(s_by_d,main="Histograms of steps by day",xlab="Steps by day",col="green")
-dev.off()
 ```
 
-```
-## png 
-##   2
-```
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 Summary:
 
@@ -87,15 +82,10 @@ intervals=unique(activity$interval)
 Plot:
 
 ```r
-png("Image2.png")
 plot(intervals,m_by_i,type="l",main="Time series average steps",xlab="Intervals",ylab="Mean Steps")
-dev.off()
 ```
 
-```
-## png 
-##   2
-```
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 The 5-minute interval that, on average, contains the maximum number of steps:
 
@@ -137,15 +127,10 @@ s_by_d=tapply(activity$steps,as.factor(activity$date),sum)
 Histogram:
 
 ```r
-png("Image3.png")
 hist(s_by_d,main="Histograms of steps by day",xlab="Steps by day",col="blue")
-dev.off()
 ```
 
-```
-## png 
-##   2
-```
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 Summary:
 
@@ -185,17 +170,12 @@ r=range(m_by_i_wd,m_by_i_we)
 Graph:
 
 ```r
-png("Image4.png")
 par(mfrow=c(2,1),mar = c(4,2,4,2))
 plot(i_we,m_by_i_we,type="l",col="blue",main="Weekend",xlab="interval",ylab="step",ylim=r)
 plot(i_wd,m_by_i_wd,type="l",col="blue",main="Weekend",xlab="interval",ylab="step",ylim=r)
-dev.off()
 ```
 
-```
-## png 
-##   2
-```
+![](PA1_template_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 
 
