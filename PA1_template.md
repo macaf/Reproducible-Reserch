@@ -17,6 +17,7 @@ by Macarena Fernández
 Load the data:
 
 ```r
+setwd("C:/Users/pc/Desktop/Python")
 library(knitr)
 ```
 
@@ -46,16 +47,26 @@ activity <- read_csv("C:/Users/pc/Desktop/Python/activity.csv")
 ## )
 ```
 
+```r
+s_by_d=tapply(activity$steps,as.factor(activity$date),sum,na.rm=TRUE)
+```
+
 
 Histograms of steps per day:
 
 
 ```r
-s_by_d=tapply(activity$steps,as.factor(activity$date),sum,na.rm=TRUE)
+png("Image1.png")
 hist(s_by_d,main="Histograms of steps by day",xlab="Steps by day",col="green")
+dev.off()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+```
+## png 
+##   2
+```
+
+Summary:
 
 ```r
 summary(s_by_d)
@@ -71,10 +82,21 @@ Time series plot of the average of steps taken by day:
 ```r
 m_by_i=tapply(activity$steps,as.factor(activity$interval),mean,na.rm=TRUE)
 intervals=unique(activity$interval)
-plot(intervals,m_by_i,type="l",main="Time series average steps",xlab="Intervals",ylab="Mean Steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+Plot:
+
+```r
+png("Image2.png")
+plot(intervals,m_by_i,type="l",main="Time series average steps",xlab="Intervals",ylab="Mean Steps")
+dev.off()
+```
+
+```
+## png 
+##   2
+```
+
 The 5-minute interval that, on average, contains the maximum number of steps:
 
 ```r
@@ -85,6 +107,8 @@ names(m_by_i)[i]
 ```
 ## [1] "835"
 ```
+
+
 Number of missings Values:
 
 ```r
@@ -94,6 +118,8 @@ sum(is.na(activity$steps))
 ```
 ## [1] 2304
 ```
+
+
 Straregy for imputing missing values: mean of the interval
 
 ```r
@@ -105,16 +131,23 @@ for (i in 1:nrow(activity)){
     
   }
 }
+s_by_d=tapply(activity$steps,as.factor(activity$date),sum)
 ```
 
 Histogram:
 
 ```r
-s_by_d=tapply(activity$steps,as.factor(activity$date),sum)
+png("Image3.png")
 hist(s_by_d,main="Histograms of steps by day",xlab="Steps by day",col="blue")
+dev.off()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+```
+## png 
+##   2
+```
+
+Summary:
 
 ```r
 summary(s_by_d)
@@ -124,6 +157,9 @@ summary(s_by_d)
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##      41    9819   10766   10766   12811   21194
 ```
+
+
+
 Factor Variable 0 is the date is a weekday 1 if is a weekend:
 
 ```r
@@ -149,12 +185,18 @@ r=range(m_by_i_wd,m_by_i_we)
 Graph:
 
 ```r
+png("Image4.png")
 par(mfrow=c(2,1),mar = c(4,2,4,2))
 plot(i_we,m_by_i_we,type="l",col="blue",main="Weekend",xlab="interval",ylab="step",ylim=r)
 plot(i_wd,m_by_i_wd,type="l",col="blue",main="Weekend",xlab="interval",ylab="step",ylim=r)
+dev.off()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+```
+## png 
+##   2
+```
+
 
 
 
