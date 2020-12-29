@@ -1,10 +1,13 @@
 ---
 title: "Project 1"
-author: Macarena Fernández
-date: December 28, 2020
+author: "Macarena Fernández"
+date: "December 28, 2020"
 output:
+  html_document:
+    df_print: paged
   md_document:
     variant: markdown_github
+  pdf_document: default
 ---
 
 #Project 1
@@ -13,6 +16,7 @@ by Macarena Fernández
 
 Load the data:
 ```{r echo = TRUE} 
+library(knitr)
 library(readr)
 activity <- read_csv("C:/Users/pc/Desktop/Python/activity.csv")
 ```
